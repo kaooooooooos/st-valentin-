@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Veux-tu être mon·/ma Valentin·e ? ❤️</title>
+<title>Veux-tu être ma Valentine ? ❤️</title>
 
 <style>
     body {
@@ -44,7 +44,7 @@
 </head>
 <body>
 
-<h1>Veux-tu être mon·/ma Valentin·e ? ❤️</h1>
+<h1>Veux-tu être ma Valentine ? ❤️</h1>
 
 <button id="yesBtn">Oui 😍</button>
 <button id="noBtn">Non 😢</button>
@@ -55,8 +55,8 @@
 
     yesBtn.addEventListener('click', () => {
         document.body.innerHTML = `
-            <h1>🎉 Youpi ! ❤️</h1>
-            <p>Merci d’avoir dit OUI 💖</p>
+            <h1>🎉 bonne reponse bebounette! ❤️</h1>
+            <p>hehhehhe 💖</p>
         `;
         launchConfetti();
     });
@@ -64,9 +64,9 @@
     let noClicks = 0;
     const noMessages = [
         "Essayez encore 😉",
-        "Tu peux réfléchir 💭",
-        "Vraiment pas? 😅",
-        "Allez… ❤️"
+        "Tu peux réfléchir ta encore du temps reflechis encore ta besoin de temps 💭",
+        "Vraiment pas? t'es sur hein ?😅",
+        "bebouuuuu ❤️"
     ];
 
     noBtn.addEventListener('click', () => {
@@ -89,12 +89,3 @@
 
 </body>
 </html>
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.2); }
-  100% { transform: scale(1); }
-}
-h1 {
-  animation: pulse 2s infinite ease-in-out;
-}
-
