@@ -14,7 +14,7 @@
         padding: 40px;
     }
 
-    /* ❤️ Animation cœur qui pulse */
+    
     @keyframes pulse {
         0% { transform: scale(1); }
         50% { transform: scale(1.2); }
@@ -53,9 +53,6 @@
 
 <body>
 
-<!-- 🎵 Musique (remplace le nom du fichier si besoin) -->
-<audio src="ton-fichier.mp3" autoplay loop></audio>
-
 <h1>Veux-tu être ma Valentine ? ❤️</h1>
 
 <button id="yesBtn">Oui 😍</button>
@@ -65,7 +62,6 @@
     const yesBtn = document.getElementById('yesBtn');
     const noBtn = document.getElementById('noBtn');
 
-    /* 😈 Le bouton Non fuit au survol */
     noBtn.onmouseover = () => {
         const x = Math.random() * 200 - 100;
         const y = Math.random() * 100 - 50;
