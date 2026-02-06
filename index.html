@@ -86,6 +86,17 @@
         script.onload = () => confetti({ particleCount: 100, spread: 70 });
     }
 </script>
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+h1 {
+  animation: pulse 2s infinite ease-in-out;
+}
+noBtn.onmouseover = () => {
+  noBtn.style.transform = "translateX(60px)";
+};
 
 </body>
 </html>
