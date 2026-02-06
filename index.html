@@ -12,9 +12,9 @@
         background: #ffe6ee;
         color: #b30047;
         padding: 40px;
+        overflow: hidden;
     }
 
-    /* ❤️ Pulse uniquement visuel */
     @keyframes pulse {
         0% { scale: 1; }
         50% { scale: 1.2; }
@@ -34,18 +34,21 @@
         border: none;
         border-radius: 10px;
         cursor: pointer;
-        position: relative;
+        position: absolute;
     }
 
     #yesBtn {
         background: #ff4f79;
         color: white;
+        position: relative;
     }
 
     #noBtn {
         background: white;
         border: 3px solid #ff4f79;
         color: #ff4f79;
+        left: 50%;
+        transform: translateX(-50%);
     }
 </style>
 </head>
@@ -64,37 +67,32 @@
     const noBtn = document.getElementById("noBtn");
     const music = document.getElementById("music");
 
-    /* 😈 Le bouton Non fuit */
+    let speed = 150;     // vitesse initiale
+    let scale = 1;       // taille initiale
+    let attempts = 0;
+
+    // 😈 fuite ultra rapide + rétrécissement
     noBtn.addEventListener("mouseenter", () => {
-        const x = Math.random() * 300 - 150;
-        const y = Math.random() * 200 - 100;
+        attempts++;
+
+        speed += 80;           // de plus en plus rapide
+        scale -= 0.1;          // de plus en plus petit
+        if (scale < 0.3) scale = 0.3;
+
+        const x = Math.random() * (window.innerWidth - 100);
+        const y = Math.random() * (window.innerHeight - 100);
+
+        noBtn.style.transition = `all ${Math.max(0.05, 0.4 - attempts * 0.05)}s linear`;
         noBtn.style.left = x + "px";
         noBtn.style.top = y + "px";
-    });
-
-    let noClicks = 0;
-    const noMessages = [
-        "Essayez encore 😉",
-        "Réfléchis encore 💭",
-        "T'es sûr ? 😅",
-        "bebouuu ❤️"
-    ];
-
-    noBtn.addEventListener("click", () => {
-        if (noClicks < noMessages.length) {
-            noBtn.textContent = noMessages[noClicks];
-            yesBtn.style.scale = 1 + noClicks * 0.15;
-        } else {
-            noBtn.style.display = "none";
-        }
-        noClicks++;
+        noBtn.style.scale = scale;
     });
 
     yesBtn.addEventListener("click", () => {
-        music.play(); // ✅ autorisé après clic
+        music.play();
         document.body.innerHTML = `
             <h1>🎉 bonne réponse bebounette ❤️</h1>
-            <p>hehhehhe 💖</p>
+            <p>Impossible de dire non 😘</p>
         `;
         launchConfetti();
     });
@@ -103,7 +101,7 @@
         const script = document.createElement("script");
         script.src = "https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js";
         document.body.appendChild(script);
-        script.onload = () => confetti({ particleCount: 150, spread: 80 });
+        script.onload = () => confetti({ particleCount: 200, spread: 90 });
     }
 </script>
 
