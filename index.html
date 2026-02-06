@@ -15,16 +15,9 @@
         overflow: hidden;
     }
 
-    @keyframes pulse {
-        0% { scale: 1; }
-        50% { scale: 1.2; }
-        100% { scale: 1; }
-    }
-
     h1 {
-        font-size: 2.8rem;
-        margin-bottom: 30px;
-        animation: pulse 2s infinite ease-in-out;
+        font-size: 2.5rem;
+        margin-bottom: 40px;
     }
 
     button {
@@ -39,8 +32,10 @@
     #yesBtn {
         background: #ff4f79;
         color: white;
-        position: relative;
-        transition: scale 0.2s ease;
+        left: 50%;
+        top: 50%;
+        transform: translate(-120%, -50%);
+        transition: transform 0.2s ease;
     }
 
     #noBtn {
@@ -48,14 +43,13 @@
         border: 3px solid #ff4f79;
         color: #ff4f79;
         left: 50%;
-        transform: translateX(-50%);
+        top: 50%;
+        transform: translate(20%, -50%);
     }
 </style>
 </head>
 
 <body>
-
-<audio id="music" src="ton-fichier.mp3" loop></audio>
 
 <h1>Veux-tu être ma Valentine ? ❤️</h1>
 
@@ -65,24 +59,39 @@
 <script>
     const yesBtn = document.getElementById("yesBtn");
     const noBtn = document.getElementById("noBtn");
-    const music = document.getElementById("music");
 
-    let noScale = 1;
     let yesScale = 1;
-    let attempts = 0;
+    let noScale = 1;
 
-    // 😈 Non fuit + rétrécit
-    noBtn.addEventListener("mouseenter", () => {
-        attempts++;
-
+    function moveNo() {
+        // Non rapetisse
         noScale -= 0.1;
         if (noScale < 0.3) noScale = 0.3;
+        noBtn.style.transform = `scale(${noScale})`;
 
-        yesScale += 0.15; // ❤️ Oui devient plus gros
+        // Oui grossit
+        yesScale += 0.15;
+        yesBtn.style.transform = `translate(-120%, -50%) scale(${yesScale})`;
 
-        const x = Math.random() * (window.innerWidth - 100);
-        const y = Math.random() * (window.innerHeight - 100);
+        // Nouvelle position aléatoire
+        const x = Math.random() * (window.innerWidth - 120);
+        const y = Math.random() * (window.innerHeight - 80);
+        noBtn.style.left = x + "px";
+        noBtn.style.top = y + "px";
+    }
 
-        noBtn.style.transition = `all ${Math.
+    // 💡 fonctionne sur ordi ET mobile
+    noBtn.addEventListener("mouseover", moveNo);
+    noBtn.addEventListener("click", moveNo);
 
-                                        
+    yesBtn.addEventListener("click", () => {
+        document.body.innerHTML = `
+            <h1>🎉 Bonne réponse ❤️</h1>
+            <p> c'etais pas si compliqué  😘</p>
+        `;
+    });
+</script>
+
+</body>
+</html>
+
